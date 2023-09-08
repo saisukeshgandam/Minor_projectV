@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:project/Third_screen.dart';
+import 'package:project/account.dart';
+import 'package:project/address.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 void main() {
@@ -30,6 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Travel Guide'),
     );
+
   }
 }
 
@@ -111,6 +115,65 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Travel Guide'),
       ),
+      drawer: Drawer(
+        child:Column(children:[
+          Divider(thickness: 10,),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(25),
+            color: Theme.of(context).primaryColor,
+            child: Center(
+              child: Column(
+                children:<Widget> [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(image: NetworkImage("https://static.thenounproject.com/png/854951-200.png"),
+                     fit: BoxFit.fill
+                      ),
+                    ),
+                  ),
+                  Text("+919988665512",style: TextStyle(fontSize: 22),),
+                ],
+              )
+            ),
+          ),
+          ListTile(
+            title:Text("Home"),
+            onTap: () {
+             
+            },
+            trailing: Icon(Icons.home,color: Colors.black,),
+          ),
+          
+          Divider(thickness: 4,color: Colors.deepOrange,),
+          ListTile(
+            title:Text("Address"),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AddressScreen()),);
+            },
+            trailing: Icon(Icons.location_city,color: Colors.black,),
+          ),
+          Divider(thickness: 4,color: Colors.deepOrange,),
+          ListTile(
+            title:Text("Account"),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountScreen()),);
+            } ,
+            trailing: Icon(Icons.person,color: Colors.black,),
+          ),
+          Divider(thickness: 4,color: Colors.deepOrange,),
+          ListTile(
+            title:Text("Logout"),
+            onTap: (){
+              Navigator.pop(context,MaterialPageRoute(builder: (context)=>MyApp()),);
+            },
+            trailing: Icon(Icons.logout,color: Colors.black,),
+          ),
+          Divider(thickness: 4,color: Colors.deepOrange,),
+        ]) ,),
       body: Padding(padding: EdgeInsets.all(9),
       child: ListView(
         children: <Widget> [
@@ -195,67 +258,3 @@ class _MyHomePageState extends State<MyHomePage> {
 
 // Third page for signup
 
-class ThirdScreen extends StatefulWidget {
-  const ThirdScreen({ Key? key }) : super(key: key);
-
-  @override
-  _ThirdScreenState createState() => _ThirdScreenState();
-}
-
-class _ThirdScreenState extends State<ThirdScreen> {
-  get nameController => null;
-
-  get passwordController => null;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-        title: Text('Travel Guide'),
-      ),
-      body: Padding(padding: EdgeInsets.all(10),
-      child: ListView(
-        children: <Widget> [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(10),
-            child: Text(
-              'SIGN UP ',style: TextStyle(color: Colors.black,fontSize:25.0),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(9),
-            child: TextField(
-              controller: nameController,
-              decoration: InputDecoration(border: OutlineInputBorder(),labelText: 'Email'),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: TextField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: InputDecoration(border: OutlineInputBorder(),labelText: 'Password'),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: TextField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: InputDecoration(border: OutlineInputBorder(),labelText: 'Confirm Password'),
-            ),
-          ),
-          Padding(
-              padding: const EdgeInsets.all(45.0),
-              child: ElevatedButton(onPressed:(){
-                
-                
-                }, child: Text("Sign In")),
-            ),
-        ],
-      ),
-      ),
-      
-    );
-  }
-}
